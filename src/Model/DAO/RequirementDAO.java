@@ -25,8 +25,8 @@ public class RequirementDAO {
                         + "requirement_name, "
                         + "requirement_description, "
                         + "requirement_functionality, "
-                        + "requirement_creationDate, "
-                        + "requirement_updateDate, "
+                        + "requirement_creation_date, "
+                        + "requirement_update_date, "
                         + "requirement_version, "
                         + "requirement_priority, "
                         + "requirement_complexity, "
@@ -35,7 +35,7 @@ public class RequirementDAO {
                         + "requirement_stage, "
                         + "requirement_module, "
                         + "requirement_author, "
-                        + "requirement_updater"
+                        + "requirement_update_user"
                         + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
             );
             stmt.setString(1, r.getIdentifier());
@@ -175,7 +175,9 @@ public class RequirementDAO {
                         + "requirement_complexity = ?, "
                         + "requirement_effort = ?, "
                         + "requirement_state = ?, "
-                        + "requirement_stage = ? "
+                        + "requirement_stage = ?, "
+                        + "requirement_update_date = ?, "
+                        + "requirement_update_user = ? "
                         + "WHERE requirement_id = ?");
             
             stmt.setString(1, r.getIdentifier());
@@ -188,7 +190,9 @@ public class RequirementDAO {
             stmt.setString(8, r.getEffort());
             stmt.setString(9, r.getState());
             stmt.setString(10, r.getStage());
-            stmt.setInt(11, Requirement.getStaticId());
+            stmt.setString(11, r.getUpdateDate());
+            stmt.setInt(12, r.getUpdater());
+            stmt.setInt(13, Requirement.getStaticId());
 
             stmt.executeUpdate();
 

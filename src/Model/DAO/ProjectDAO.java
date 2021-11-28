@@ -120,7 +120,7 @@ public class ProjectDAO {
 
     }
     
-        public void delete(Project p) {
+    public void delete(Project p) {
 
         Connection con = ConnectionFactory.getConnection();
         
